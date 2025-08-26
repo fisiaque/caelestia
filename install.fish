@@ -287,6 +287,14 @@ if ! pacman -Q hyprpolkitagent &> /dev/null
     sudo pacman -S --needed hyprpolkitagent $noconfirm
 end
 
+# Install gvfs if not already installed
+if ! pacman -Q gvfs &> /dev/null
+    log "gvfs not installed. Installing..."
+
+    # Install
+    sudo pacman -S --needed gvfs $noconfirm
+end
+
 # Generate scheme stuff if needed
 if ! test -f $state/caelestia/scheme.json
     caelestia scheme set -n shadotheme
